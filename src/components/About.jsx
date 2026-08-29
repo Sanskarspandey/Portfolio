@@ -1,98 +1,202 @@
+import React from 'react';
+import { motion } from 'framer-motion';
+import { personalInfo } from '../data/portfolioData';
+import { GithubIcon, LinkedinIcon } from './Icons';
+import {
+  GraduationCap,
+  Briefcase,
+  Code2,
+  FileText,
+  Mail,
+  Sparkles,
+  ExternalLink
+} from 'lucide-react';
+
+const iconMap = {
+  GraduationCap,
+  Briefcase,
+  Code2,
+  FileText
+};
+
 export default function About() {
   return (
-    <section id="about" className="py-20 px-6 md:px-20 bg-gray-50 dark:bg-gray-900">
-      {/* TITLE */}
-      <h2 className="text-4xl font-bold text-center text-gray-900 dark:text-white">
-        About <span className="text-indigo-500">Me</span>
-      </h2>
+    <section id="about" className="relative py-20 lg:py-28 bg-[#08080A] overflow-hidden">
+      {/* Background ambient accents */}
+      <div className="absolute top-1/2 right-1/4 w-[450px] h-[450px] bg-white/[0.015] blur-[140px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+      <div
+        className="absolute inset-0 pointer-events-none opacity-30"
+        style={{
+          backgroundImage: 'radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px)',
+          backgroundSize: '32px 32px',
+          maskImage: 'linear-gradient(to bottom, black 0%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(to bottom, black 0%, transparent 100%)'
+        }}
+      />
 
-      <p className="text-center text-gray-500 mt-3 max-w-2xl mx-auto">
-        A passionate developer on a mission to create innovative solutions that
-        bridge technology and real-world impact
-      </p>
-
-      {/* MAIN GRID */}
-      <div className="grid md:grid-cols-2 gap-10 mt-12">
-        {/* LEFT CARD */}
-        <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-md">
-          <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-            Hello! I'm Sanskar Pandey
-          </h3>
-
-          <p className="mt-4 text-gray-600 dark:text-gray-300 leading-relaxed">
-            I'm currently a 3rd year B.Tech student specializing in Computer
-            Science Engineering with a focus on Artificial Intelligence and
-            Machine Learning. My journey in technology began with curiosity and
-            has evolved into a passion for creating innovative web applications.
-          </p>
-
-          <p className="mt-4 text-gray-600 dark:text-gray-300 leading-relaxed">
-            As a full-stack developer with expertise in the MERN stack, I enjoy
-            both frontend and backend development. I'm particularly interested
-            in the intersection of web development and AI/ML.
-          </p>
-
-          <p className="mt-4 text-gray-600 dark:text-gray-300 leading-relaxed">
-            When I'm not coding, I'm exploring new technologies, contributing to
-            open-source projects, and building impactful solutions.
-          </p>
-        </div>
-
-        {/* RIGHT SIDE (INFO CARDS) */}
-        <div className="grid grid-cols-2 gap-4">
-          <div className="p-4 rounded-lg shadow-sm bg-blue-50 hover:shadow-md transition">
-            <h4 className="text-sm font-semibold">📧 Email</h4>
-            <p className="text-xs mt-1 text-gray-600">
-              sanskar.p.work@gmail.com
-            </p>
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        {/* Section Heading */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="mb-14 lg:mb-20"
+        >
+          <div className="flex items-center gap-2 mb-3">
+            <Sparkles className="w-4 h-4 text-[#E8D2A6]" />
+            <span className="text-[10px] font-mono tracking-[0.3em] uppercase text-white/40">
+              About Sanskar
+            </span>
           </div>
+          <h2 className="text-3xl md:text-5xl lg:text-[46px] font-display font-semibold tracking-tight text-white leading-[1.15]">
+            Crafting the Future <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/90 to-white/40">
+              One Line at a Time
+            </span>
+          </h2>
+        </motion.div>
 
-          <div className="p-4 rounded-lg shadow-sm bg-green-50 hover:shadow-md transition">
-            <h4 className="text-sm font-semibold">📞 Phone</h4>
-            <p className="text-xs mt-1 text-gray-600">+91 9372948245</p>
-          </div>
+        {/* Narrative & Profile Overview */}
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 mb-16 lg:mb-24 items-center">
+          {/* Visual Avatar / Brand Card */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="lg:col-span-5 flex items-center justify-center"
+          >
+            <div className="relative w-full max-w-[340px] aspect-square group">
+              {/* Outer Glow */}
+              <div className="absolute inset-0 bg-[#C9A876]/15 blur-[60px] rounded-full group-hover:bg-[#C9A876]/25 transition-colors duration-500 pointer-events-none" />
 
-          <div className="p-4 rounded-lg shadow-sm bg-purple-50 hover:shadow-md transition">
-            <h4 className="text-sm font-semibold">📍 Location</h4>
-            <p className="text-xs mt-1 text-gray-600">Mumbai, India</p>
-          </div>
+              {/* Monogram / Terminal Badge Canvas */}
+              <div className="relative w-full h-full rounded-[2.5rem] overflow-hidden border border-white/10 bg-[#0A0A0C] shadow-2xl p-7 flex flex-col justify-between transform transition-transform duration-500 group-hover:scale-[1.02] group-hover:-rotate-1">
+                {/* Header */}
+                <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                  <div className="flex items-center gap-2">
+                    <span className="w-3 h-3 rounded-full bg-emerald-500/80 inline-block animate-pulse" />
+                    <span className="text-xs font-mono text-white/70 font-semibold">Sanskar.dev</span>
+                  </div>
+                  <span className="text-[10px] font-mono text-[#E8D2A6] uppercase tracking-widest bg-[#C9A876]/10 px-2 py-0.5 rounded border border-[#C9A876]/20">
+                    B.Tech '27
+                  </span>
+                </div>
 
-          <div className="p-4 rounded-lg shadow-sm bg-orange-50 hover:shadow-md transition">
-            <h4 className="text-sm font-semibold">🎓 Education</h4>
-            <p className="text-xs mt-1 text-gray-600">B.Tech (AI/ML)</p>
-          </div>
+                {/* Central Monogram */}
+                <div className="my-auto flex flex-col items-center justify-center text-center py-4">
+                  <div className="w-20 h-20 rounded-2xl bg-gradient-to-tr from-[#18181B] via-white/5 to-[#C9A876]/20 border border-white/15 flex items-center justify-center shadow-inner mb-4">
+                    <span className="font-display font-extrabold text-3xl text-white tracking-wider">
+                      SP
+                    </span>
+                  </div>
+                  <h3 className="font-display font-semibold text-lg text-white">Sanskar Pandey</h3>
+                  <p className="text-xs font-mono text-white/40 tracking-wide mt-1">
+                    VIT Chennai · AI & ML
+                  </p>
+                </div>
+
+                {/* Bottom badge */}
+                <div className="pt-3 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-white/50">
+                  <span>Mumbai, India</span>
+                  <span className="text-[#E8D2A6]">AI Engineer</span>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Right Narrative Story */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="lg:col-span-7 flex flex-col justify-center"
+          >
+            <div className="space-y-4 md:space-y-5 font-sans">
+              {personalInfo.fullBio.map((paragraph, index) => (
+                <p key={index} className="text-base sm:text-lg text-white/70 leading-relaxed font-light text-justify">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+
+            {/* Quick Contact Chips */}
+            <div className="flex flex-wrap gap-3 mt-8">
+              <a
+                href={`mailto:${personalInfo.email}`}
+                className="group px-4 py-2 rounded-full bg-white/[0.03] border border-white/10 text-white text-xs font-medium flex items-center gap-2 transition-all duration-300 hover:border-white/40 hover:bg-white/10"
+              >
+                <Mail className="w-3.5 h-3.5 text-[#E8D2A6]" />
+                <span className="font-mono tracking-wide">{personalInfo.email}</span>
+              </a>
+
+              <a
+                href={personalInfo.github}
+                target="_blank"
+                rel="noreferrer"
+                className="group px-4 py-2 rounded-full bg-white/[0.03] border border-white/10 text-white text-xs font-medium flex items-center gap-2 transition-all duration-300 hover:border-white/40 hover:bg-white/10"
+              >
+                <GithubIcon className="w-3.5 h-3.5 text-[#E8D2A6]" />
+                <span className="font-mono tracking-wide">GitHub</span>
+              </a>
+
+              <a
+                href={personalInfo.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                className="group px-4 py-2 rounded-full bg-white/[0.03] border border-white/10 text-white text-xs font-medium flex items-center gap-2 transition-all duration-300 hover:border-white/40 hover:bg-white/10"
+              >
+                <LinkedinIcon className="w-3.5 h-3.5 text-[#E8D2A6]" />
+                <span className="font-mono tracking-wide">LinkedIn</span>
+              </a>
+            </div>
+          </motion.div>
         </div>
-      </div>
 
-      {/* BOTTOM CARDS */}
-      <div className="grid md:grid-cols-4 gap-6 mt-14">
-        <div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow text-center hover:shadow-lg transition">
-          <h4 className="text-lg font-semibold">🎓 Education</h4>
-          <p className="text-sm text-gray-500 mt-2">
-            B.Tech in Computer Science with specialization in AI/ML
-          </p>
-        </div>
+        {/* 4 Stat / Info Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+          {personalInfo.stats.map((stat, idx) => {
+            const Icon = iconMap[stat.icon] || Code2;
+            return (
+              <motion.div
+                key={stat.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                className="h-full"
+              >
+                <div className="h-full min-h-[110px] p-5 rounded-2xl bg-[#0A0A0C] border border-white/5 relative overflow-hidden group hover:border-[#C9A876]/30 transition-all duration-500 flex items-center justify-between hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(201,168,118,0.06)]">
+                  {/* Subtle hover backlight */}
+                  <div className="absolute top-1/2 right-0 -translate-y-1/2 w-24 h-24 bg-[#C9A876]/10 rounded-full blur-[40px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
-        <div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow text-center hover:shadow-lg transition">
-          <h4 className="text-lg font-semibold">💻 Passion</h4>
-          <p className="text-sm text-gray-500 mt-2">
-            Full-stack development with MERN stack and exploring AI/ML
-          </p>
-        </div>
+                  {/* Icon */}
+                  <div className="p-2.5 rounded-xl bg-white/[0.03] border border-white/5 group-hover:bg-[#C9A876]/15 group-hover:border-[#C9A876]/30 group-hover:scale-105 transition-all duration-500 shrink-0 text-[#E8D2A6]">
+                    <Icon className="w-5 h-5" />
+                  </div>
 
-        <div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow text-center hover:shadow-lg transition">
-          <h4 className="text-lg font-semibold">🚀 Experience</h4>
-          <p className="text-sm text-gray-500 mt-2">
-            Building real-world projects and contributing to tech communities
-          </p>
-        </div>
+                  {/* Label & Value */}
+                  <div className="relative z-10 flex flex-col items-end text-right">
+                    <div className="text-2xl sm:text-3xl font-display font-bold text-white mb-0.5 tracking-tight flex items-baseline justify-end">
+                      <span>{stat.value}</span>
+                      <span className="text-[#C9A876] text-sm sm:text-base ml-0.5 font-light">
+                        {stat.suffix}
+                      </span>
+                    </div>
+                    <div className="text-[10px] text-white/40 font-mono tracking-widest uppercase group-hover:text-white/70 transition-colors duration-500">
+                      {stat.label}
+                    </div>
+                  </div>
 
-        <div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow text-center hover:shadow-lg transition">
-          <h4 className="text-lg font-semibold">🎯 Goal</h4>
-          <p className="text-sm text-gray-500 mt-2">
-            Creating impactful solutions that bridge technology and real-world
-            problems
-          </p>
+                  {/* Bottom animated border stripe */}
+                  <div className="absolute bottom-0 left-0 w-full h-[1.5px] bg-gradient-to-l from-[#C9A876]/60 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700 transform translate-x-full group-hover:translate-x-0" />
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

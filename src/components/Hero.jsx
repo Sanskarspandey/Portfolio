@@ -1,212 +1,267 @@
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { personalInfo } from '../data/portfolioData';
+import { GithubIcon, LinkedinIcon } from './Icons';
 import {
-  FaReact,
-  FaNodeJs,
-  FaPython,
-  FaGithub,
-  FaLinkedin,
-} from "react-icons/fa";
-import { SiMongodb, SiTailwindcss, SiJavascript } from "react-icons/si";
-import { HiOutlineMail } from "react-icons/hi";
+  ArrowRight,
+  Mail,
+  ChevronDown,
+  Terminal,
+  Cpu,
+  Layers,
+  Sparkles,
+  Bot,
+  Code2
+} from 'lucide-react';
 
 export default function Hero() {
-  const roles = [
-    "Problem Solver",
-    "Full Stack Developer",
-    "MERN Stack Specialist",
-    "AI/ML Explorer",
-  ];
-
-  const [text, setText] = useState("");
-  const [index, setIndex] = useState(0);
+  const roles = personalInfo.typewriterRoles;
+  const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
+  const [currentText, setCurrentText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
+  const [typingSpeed, setTypingSpeed] = useState(90);
 
   useEffect(() => {
-    const current = roles[index];
-    let speed = isDeleting ? 50 : 100;
+    const fullText = roles[currentRoleIndex];
 
-    const timeout = setTimeout(() => {
-      setText(
-        isDeleting
-          ? current.substring(0, text.length - 1)
-          : current.substring(0, text.length + 1),
-      );
-
-      if (!isDeleting && text === current) {
-        setTimeout(() => setIsDeleting(true), 1000);
-      } else if (isDeleting && text === "") {
-        setIsDeleting(false);
-        setIndex((prev) => (prev + 1) % roles.length);
+    const handleTyping = () => {
+      if (!isDeleting) {
+        setCurrentText(fullText.substring(0, currentText.length + 1));
+        if (currentText === fullText) {
+          setTimeout(() => setIsDeleting(true), 1800);
+          setTypingSpeed(110);
+        } else {
+          setTypingSpeed(75);
+        }
+      } else {
+        setCurrentText(fullText.substring(0, currentText.length - 1));
+        if (currentText === '') {
+          setIsDeleting(false);
+          setCurrentRoleIndex((prev) => (prev + 1) % roles.length);
+          setTypingSpeed(90);
+        } else {
+          setTypingSpeed(40);
+        }
       }
-    }, speed);
+    };
 
-    return () => clearTimeout(timeout);
-  }, [text, isDeleting, index]);
+    const timer = setTimeout(handleTyping, typingSpeed);
+    return () => clearTimeout(timer);
+  }, [currentText, isDeleting, currentRoleIndex, roles, typingSpeed]);
 
-  const icons = [
-    { icon: <FaReact />, color: "bg-blue-500", name: "React" },
-    { icon: <SiJavascript />, color: "bg-yellow-400", name: "JavaScript" },
-    { icon: <FaNodeJs />, color: "bg-green-500", name: "Node.js" },
-    { icon: <SiMongodb />, color: "bg-green-700", name: "MongoDB" },
-    { icon: <FaPython />, color: "bg-yellow-500", name: "Python" },
-    { icon: <SiTailwindcss />, color: "bg-cyan-400", name: "Tailwind CSS" },
-  ];
-
-  const scrollDown = () => {
-    window.scrollTo({
-      top: window.innerHeight,
-      behavior: "smooth",
-    });
+  const scrollTo = (id) => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-between px-6 md:px-20 pt-28 overflow-hidden"
+      className="relative min-h-screen flex flex-col justify-center items-center pt-24 pb-16 px-4 sm:px-6 lg:px-12 bg-[#08080A] overflow-hidden"
     >
-      {/* 🌈 EXACT BACKGROUND FEEL */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-100 via-white to-purple-200"></div>
+      {/* Radial background gradient & grid */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-40"
+        style={{
+          backgroundImage: 'radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px)',
+          backgroundSize: '32px 32px',
+          maskImage: 'radial-gradient(ellipse 90% 70% at 50% 50%, black 20%, transparent 100%)',
+          WebkitMaskImage: 'radial-gradient(ellipse 90% 70% at 50% 50%, black 20%, transparent 100%)'
+        }}
+      />
 
-      {/* LEFT */}
-      <div className="relative z-10 max-w-xl">
-        <h1 className="text-6xl font-extrabold text-gray-900">
-          Hi, I'm{" "}
-          <span className="bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text">
-            Sanskar
-          </span>
-        </h1>
+      {/* Subtle warm bronze glow at center */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[350px] bg-[#C9A876]/[0.06] blur-[130px] rounded-full pointer-events-none" />
 
-        {/* TYPEWRITER */}
-        <h2 className="text-3xl font-semibold text-indigo-400 mt-4 h-[40px]">
-          {text}
-          <span className="animate-pulse">|</span>
-        </h2>
+      {/* Decorative corner accent brackets */}
+      <div className="hidden sm:block absolute top-24 left-8 w-6 h-6 border-t border-l border-white/10 pointer-events-none" />
+      <div className="hidden sm:block absolute top-24 right-8 w-6 h-6 border-t border-r border-white/10 pointer-events-none" />
+      <div className="hidden sm:block absolute bottom-12 left-8 w-6 h-6 border-b border-l border-white/10 pointer-events-none" />
+      <div className="hidden sm:block absolute bottom-12 right-8 w-6 h-6 border-b border-r border-white/10 pointer-events-none" />
 
-        <p className="mt-5 text-gray-600">
-          3rd year B.Tech student at{" "}
-          <span className="text-blue-600 font-semibold">VIT Chennai</span>{" "}
-          specializing in AI/ML.
-        </p>
-
-        <p className="mt-2 text-purple-600 font-medium">
-          Crafting digital experiences that bridge innovation with real-world
-          impact.
-        </p>
-
-        {/* TAGS */}
-        <div className="flex gap-3 mt-6 flex-wrap">
-          {["3rd Year B.Tech", "AI/ML Specialist", "Full Stack Dev"].map(
-            (tag, i) => (
-              <span
-                key={i}
-                className="px-4 py-2 bg-white shadow-md rounded-full text-sm"
-              >
-                {tag}
-              </span>
-            ),
-          )}
-        </div>
-
-        {/* BUTTONS */}
-        <div className="mt-8 flex gap-4">
-          <button className="px-6 py-3 rounded-lg text-white bg-gradient-to-r from-blue-500 to-purple-500 shadow-lg hover:scale-105 transition">
-            🚀 Explore My Work
-          </button>
-
-          <a
-            href="https://drive.google.com/file/d/1p7a3yUic4UmMdEVpe6S7F6g33UyKkOmp/view"
-            target="_blank"
-            rel="noreferrer"
-            className="px-6 py-3 rounded-lg border shadow-sm bg-white"
-          >
-            ⬇ Download Resume
-          </a>
-        </div>
-
-        {/* SOCIAL LINKS */}
-        <div className="flex gap-4 mt-8">
-          <a
-            href="https://github.com/Sanskarspandey"
-            target="_blank"
-            className="w-10 h-10 flex items-center justify-center bg-white shadow-md rounded-lg hover:scale-110 transition"
-          >
-            <FaGithub />
-          </a>
-
-          <a
-            href="https://www.linkedin.com/in/sanskar-pandey-188913238/"
-            target="_blank"
-            className="w-10 h-10 flex items-center justify-center bg-white shadow-md rounded-lg hover:scale-110 transition"
-          >
-            <FaLinkedin />
-          </a>
-
-          <a
-            href="mailto:sanskar.p.work@gmail.com"
-            className="w-10 h-10 flex items-center justify-center bg-white shadow-md rounded-lg hover:scale-110 transition"
-          >
-            <HiOutlineMail />
-          </a>
-        </div>
-      </div>
-
-      {/* RIGHT */}
-      <div className="relative w-[400px] h-[400px] hidden md:flex items-center justify-center">
+      <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-12 gap-12 lg:gap-8 items-center relative z-10 my-auto">
+        {/* Left Column: Information & Typewriter */}
         <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ repeat: Infinity, duration: 30, ease: "linear" }}
-          className="absolute w-full h-full rounded-full border-2 border-dashed border-indigo-300"
-        />
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left"
+        >
+          {/* Top category badge */}
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.03] border border-white/10 text-white/50 text-[11px] font-mono tracking-[0.25em] uppercase mb-6 backdrop-blur-md"
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-[#E8D2A6] animate-pulse"></span>
+            AI/ML ENGINEER · FULL STACK DEVELOPER · VIT CHENNAI
+          </motion.div>
 
-        <div className="absolute w-[300px] h-[300px] rounded-full border border-gray-300"></div>
-
-        {icons.map((item, i) => {
-          const angle = (i / icons.length) * 2 * Math.PI;
-          const radius = 150;
-
-          return (
-            <div
-              key={i}
-              className="absolute group"
+          {/* Main Name Heading */}
+          <h1 className="font-display font-extrabold tracking-[-0.04em] text-4xl sm:text-6xl md:text-7xl lg:text-[76px] leading-[1.02] mb-4 select-none">
+            <span
               style={{
-                transform: `translate(${radius * Math.cos(angle)}px, ${
-                  radius * Math.sin(angle)
-                }px)`,
+                background: 'linear-gradient(175deg, #FFFFFF 0%, #EFEBE4 60%, rgba(232,210,166,0.7) 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text'
               }}
             >
-              {/* ICON */}
-              <div
-                className={`w-14 h-14 flex items-center justify-center text-white rounded-xl shadow-lg ${item.color} 
-        hover:scale-110 transition duration-300`}
-              >
-                {item.icon}
+              {personalInfo.name}
+            </span>
+          </h1>
+
+          {/* Animated Typewriter Headline */}
+          <div className="h-10 sm:h-12 flex items-center justify-center lg:justify-start gap-2.5 text-lg sm:text-2xl font-light text-white/40 mb-6 font-sans">
+            <span>Building</span>
+            <span className="font-medium text-[#E8D2A6] drop-shadow-[0_0_25px_rgba(201,168,118,0.3)]">
+              {currentText}
+              <span className="inline-block w-0.5 h-5 sm:h-6 bg-[#E8D2A6] ml-1 animate-pulse align-middle"></span>
+            </span>
+          </div>
+
+          {/* Bio snippet */}
+          <p className="max-w-xl text-white/60 text-sm sm:text-base font-light leading-relaxed mb-8">
+            Specializing in multi-agent AI systems, Agentic RAG, reinforcement learning architectures, and production full-stack platforms. Built with engineering rigor and real-world impact.
+          </p>
+
+          {/* Call to Actions */}
+          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 mb-8">
+            <button
+              onClick={() => scrollTo('projects')}
+              className="group relative px-7 py-3 rounded-full bg-[#F2EFE9] text-[#0A0A0C] text-[13.5px] font-semibold flex items-center gap-2.5 overflow-hidden shadow-[0_0_40px_rgba(201,168,118,0.2)] transition-all duration-300 hover:shadow-[0_0_60px_rgba(201,168,118,0.35)] hover:scale-[1.02] active:scale-[0.98]"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-white via-[#F2EFE9] to-[#E8D2A6] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <span className="relative z-10">View Projects</span>
+              <ArrowRight className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+            </button>
+
+            <button
+              onClick={() => scrollTo('contact')}
+              className="px-7 py-3 rounded-full text-[13.5px] font-medium text-white/70 border border-white/15 bg-white/[0.02] backdrop-blur-md transition-all duration-300 hover:text-[#E8D2A6] hover:bg-[#C9A876]/[0.08] hover:border-[#C9A876]/40 active:scale-[0.98]"
+            >
+              Get in Touch
+            </button>
+          </div>
+
+          {/* Social icons */}
+          <div className="flex items-center gap-3">
+            <a
+              href={personalInfo.github}
+              target="_blank"
+              rel="noreferrer"
+              className="p-2.5 rounded-full bg-white/[0.03] border border-white/10 text-white/60 hover:text-white hover:border-white/30 hover:bg-white/10 transition-all duration-300"
+              aria-label="GitHub Profile"
+            >
+              <GithubIcon className="w-4 h-4" />
+            </a>
+            <a
+              href={personalInfo.linkedin}
+              target="_blank"
+              rel="noreferrer"
+              className="p-2.5 rounded-full bg-white/[0.03] border border-white/10 text-white/60 hover:text-white hover:border-white/30 hover:bg-white/10 transition-all duration-300"
+              aria-label="LinkedIn Profile"
+            >
+              <LinkedinIcon className="w-4 h-4" />
+            </a>
+            <a
+              href={`mailto:${personalInfo.email}`}
+              className="p-2.5 rounded-full bg-white/[0.03] border border-white/10 text-white/60 hover:text-white hover:border-white/30 hover:bg-white/10 transition-all duration-300"
+              aria-label="Send Email"
+            >
+              <Mail className="w-4 h-4" />
+            </a>
+          </div>
+        </motion.div>
+
+        {/* Right Column: 3D Isometric Developer Stack Card */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9, rotateX: 20 }}
+          animate={{ opacity: 1, scale: 1, rotateX: 0 }}
+          transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          className="lg:col-span-5 flex items-center justify-center relative min-h-[360px] sm:min-h-[420px]"
+        >
+          {/* Isometric Perspective Container */}
+          <div className="relative w-[310px] sm:w-[360px] h-[360px] sm:h-[400px] perspective-[1200px]">
+            <motion.div
+              animate={{
+                rotateY: [-3, 3, -3],
+                rotateX: [6, -2, 6],
+                y: [0, -8, 0]
+              }}
+              transition={{
+                duration: 9,
+                repeat: Infinity,
+                ease: 'easeInOut'
+              }}
+              className="relative w-full h-full rounded-3xl p-5 bg-[#0A0A0C]/90 backdrop-blur-2xl border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.8),inset_0_1px_1px_rgba(255,255,255,0.1)] flex flex-col justify-between overflow-hidden group"
+            >
+              {/* Corner ambient glow */}
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#C9A876]/10 blur-[50px] pointer-events-none"></div>
+
+              {/* Terminal Window Header */}
+              <div className="flex items-center justify-between pb-3 border-b border-white/10">
+                <div className="flex items-center gap-1.5">
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]/80" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]/80" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#27C93F]/80" />
+                </div>
+                <div className="text-[10px] font-mono text-white/40 tracking-wider">
+                  sanskar@agentic-node:~
+                </div>
+                <Sparkles className="w-3.5 h-3.5 text-[#E8D2A6]/70" />
               </div>
 
-              {/* TOOLTIP */}
-              <div
-                className="absolute -top-10 left-1/2 -translate-x-1/2 
-        bg-black text-white text-xs px-2 py-1 rounded opacity-0 
-        group-hover:opacity-100 transition whitespace-nowrap"
-              >
-                {item.name}
+              {/* Central Stack Matrix */}
+              <div className="grid grid-cols-2 gap-2.5 my-auto py-2">
+                {[
+                  { name: "LangGraph", type: "Multi-Agent", highlight: true },
+                  { name: "Python", type: "AI/ML Core", highlight: false },
+                  { name: "React", type: "Frontend", highlight: false },
+                  { name: "Ollama", type: "Local LLMs", highlight: true },
+                  { name: "FAISS", type: "Vector RAG", highlight: false },
+                  { name: "Node / Express", type: "APIs & Services", highlight: false }
+                ].map((item, idx) => (
+                  <motion.div
+                    key={item.name}
+                    whileHover={{ scale: 1.04, y: -2 }}
+                    className={`p-2.5 rounded-xl border flex flex-col justify-center transition-colors cursor-default ${
+                      item.highlight
+                        ? 'bg-[#C9A876]/[0.08] border-[#C9A876]/35 text-[#E8D2A6]'
+                        : 'bg-white/[0.02] border-white/10 text-white/70 hover:border-white/30 hover:text-white'
+                    }`}
+                  >
+                    <span className="text-xs font-mono font-semibold tracking-tight">{item.name}</span>
+                    <span className="text-[9px] font-mono uppercase text-white/40 tracking-widest mt-0.5">{item.type}</span>
+                  </motion.div>
+                ))}
               </div>
-            </div>
-          );
-        })}
 
-        <div className="w-44 h-44 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center text-white text-4xl font-bold shadow-xl border-4 border-white">
-          SP
-        </div>
+              {/* Status footer inside card */}
+              <div className="p-2.5 rounded-xl bg-black/40 border border-white/5 flex items-center justify-between text-[10px] font-mono text-white/50">
+                <div className="flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+                  <span className="text-white/80 font-medium">Model: Qwen 2.5 (Local)</span>
+                </div>
+                <span className="text-white/35 uppercase">State: Active</span>
+              </div>
+            </motion.div>
+          </div>
+        </motion.div>
       </div>
 
-      {/* ⬇ SCROLL BUTTON */}
-      <div
-        onClick={scrollDown}
-        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-3xl cursor-pointer animate-bounce"
+      {/* Scroll indicator cue */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.6 }}
+        transition={{ delay: 1, duration: 0.8 }}
+        onClick={() => scrollTo('about')}
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 cursor-pointer hover:opacity-100 transition-opacity"
       >
-        ↓
-      </div>
+        <span className="text-[9px] uppercase tracking-[0.3em] text-white/40 font-mono">Scroll</span>
+        <div className="w-px h-7 bg-gradient-to-b from-[#C9A876]/50 to-transparent animate-pulse" />
+      </motion.div>
     </section>
   );
 }

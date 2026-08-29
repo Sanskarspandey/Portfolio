@@ -1,204 +1,265 @@
-import { useState } from "react";
-import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
-
-/* PROJECT DATA */
-const projects = [
-  {
-    title: "Solveathon Website",
-    type: "Frontend",
-    image: "https://images.unsplash.com/photo-1518770660439-4636190af475",
-    desc: "Official website for Solveathon hackathon event.",
-    tech: ["React", "Next.js", "Tailwind CSS", "Framer Motion"],
-  },
-  {
-    title: "V-NEST Demo Portal",
-    type: "Full Stack",
-    image: "https://images.unsplash.com/photo-1551434678-e076c223a692",
-    desc: "Platform showcasing V-NEST ecosystem.",
-    tech: ["React", "Next.js", "PostgreSQL"],
-  },
-  {
-    title: "Finance Manager",
-    type: "Full Stack",
-    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f",
-    desc: "Portfolio management with AI recommendations.",
-    tech: ["React", "Node.js", "Express", "MongoDB"],
-    featured: true,
-  },
-  {
-    title: "Wanderlust",
-    type: "Full Stack",
-    image: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae",
-    desc: "Airbnb clone with listings & maps.",
-    tech: ["Node.js", "Express", "MongoDB"],
-  },
-];
-
-/* CARD */
-function ProjectCard({ project, onClick }) {
-  return (
-    <div id="projects" className="group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition">
-
-      {/* IMAGE */}
-      <div className="relative">
-        <img src={project.image} className="w-full h-48 object-cover" />
-
-        {/* FEATURED BADGE */}
-        {project.featured && (
-          <span className="absolute top-3 left-3 bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-3 py-1 text-xs rounded-full">
-            ⭐ Featured
-          </span>
-        )}
-
-        {/* HOVER OVERLAY */}
-        <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition">
-          <button
-            onClick={onClick}
-            className="bg-white px-4 py-2 rounded-full text-sm flex items-center gap-2"
-          >
-            👁 Explore Project
-          </button>
-        </div>
-      </div>
-
-      {/* CONTENT */}
-      <div className="p-5">
-        <span className="text-xs bg-indigo-100 text-indigo-600 px-3 py-1 rounded-full">
-          {project.type}
-        </span>
-
-        <h3 className="mt-3 font-semibold text-lg">{project.title}</h3>
-        <p className="text-sm text-gray-500 mt-2">{project.desc}</p>
-
-        {/* TECH TAGS */}
-        <div className="flex flex-wrap gap-2 mt-3">
-          {project.tech.map((t, i) => (
-            <span key={i} className="text-xs px-2 py-1 bg-gray-100 rounded-full">
-              {t}
-            </span>
-          ))}
-        </div>
-
-        {/* BUTTONS */}
-        <div className="flex justify-between items-center mt-4">
-          <div className="flex gap-2">
-            <button className="p-2 bg-indigo-500 text-white rounded-md">
-              <FaExternalLinkAlt />
-            </button>
-            <button className="p-2 bg-gray-200 rounded-md">
-              <FaGithub />
-            </button>
-          </div>
-
-          <button
-            onClick={onClick}
-            className="text-sm bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-4 py-2 rounded-lg"
-          >
-            Explore →
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
-function ProjectModal({ project, onClose }) {
-  if (!project) return null;
-
-  return (
-    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50">
-
-      {/* MODAL BOX */}
-      <div className="relative bg-white w-[95%] max-w-4xl rounded-2xl overflow-hidden shadow-2xl animate-fadeIn">
-
-        {/* ❌ CLOSE BUTTON */}
-        <button
-          onClick={onClose}
-          className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full bg-white shadow-md hover:bg-gray-100 transition text-xl font-bold z-10"
-        >
-          ✕
-        </button>
-
-        {/* IMAGE */}
-        <img
-          src={project.image}
-          className="w-full h-64 object-cover"
-        />
-
-        {/* CONTENT */}
-        <div className="p-6">
-
-          <h2 className="text-2xl font-bold">{project.title}</h2>
-
-          <p className="mt-3 text-gray-600 leading-relaxed">
-            A comprehensive financial management platform built with the MERN stack.
-            Features include real-time stock tracking, portfolio analytics, and AI-powered insights.
-          </p>
-
-          {/* FEATURES */}
-          <h3 className="mt-6 font-semibold text-lg">Key Features</h3>
-
-          <div className="grid md:grid-cols-2 gap-3 mt-3 text-sm text-gray-600">
-            <p>• Real-time stock data</p>
-            <p>• AI-powered insights</p>
-            <p>• JWT Authentication</p>
-            <p>• Responsive UI</p>
-          </div>
-
-          {/* TECH */}
-          <h3 className="mt-6 font-semibold text-lg">Technologies Used</h3>
-
-          <div className="flex flex-wrap gap-2 mt-3">
-            {project.tech.map((t, i) => (
-              <span
-                key={i}
-                className="px-3 py-1 bg-indigo-100 text-indigo-600 rounded-full text-sm"
-              >
-                {t}
-              </span>
-            ))}
-          </div>
-
-          {/* BUTTONS */}
-          <div className="flex gap-4 mt-6">
-            <button className="bg-indigo-500 text-white px-5 py-2 rounded-lg flex items-center gap-2">
-              🔗 Live Demo
-            </button>
-
-            <button className="border px-5 py-2 rounded-lg flex items-center gap-2">
-              <FaGithub /> View Code
-            </button>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  );
-}
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { projects } from '../data/portfolioData';
+import { GithubIcon } from './Icons';
+import {
+  ChevronLeft,
+  ChevronRight,
+  ExternalLink,
+  Sparkles,
+  Layers,
+  CheckCircle2
+} from 'lucide-react';
 
 export default function Projects() {
-  const [selected, setSelected] = useState(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(0);
+
+  const nextProject = () => {
+    setDirection(1);
+    setCurrentIndex((prev) => (prev + 1) % projects.length);
+  };
+
+  const prevProject = () => {
+    setDirection(-1);
+    setCurrentIndex((prev) => (prev - 1 + projects.length) % projects.length);
+  };
+
+  // Keyboard navigation support
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowRight') nextProject();
+      if (e.key === 'ArrowLeft') prevProject();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  const currentProject = projects[currentIndex];
+
+  const slideVariants = {
+    enter: (direction) => ({
+      x: direction > 0 ? 50 : -50,
+      opacity: 0,
+      scale: 0.98
+    }),
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1,
+      scale: 1,
+      transition: {
+        x: { type: 'spring', stiffness: 300, damping: 30 },
+        opacity: { duration: 0.35 }
+      }
+    },
+    exit: (direction) => ({
+      zIndex: 0,
+      x: direction < 0 ? 50 : -50,
+      opacity: 0,
+      scale: 0.98,
+      transition: {
+        x: { type: 'spring', stiffness: 300, damping: 30 },
+        opacity: { duration: 0.25 }
+      }
+    })
+  };
 
   return (
-    <section className="py-20 px-6 md:px-20 bg-gray-50">
+    <section id="projects" className="relative py-20 lg:py-28 bg-black overflow-hidden">
+      {/* Background dot grid pattern */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.025]"
+        style={{
+          backgroundImage: 'radial-gradient(rgba(255,255,255,0.8) 1px, transparent 1px)',
+          backgroundSize: '32px 32px'
+        }}
+      />
 
-      {/* TITLE */}
-      <h2 className="text-4xl font-bold text-center">
-        Featured <span className="text-indigo-500">Projects</span>
-      </h2>
-
-      <p className="text-center text-gray-500 mt-3 max-w-xl mx-auto">
-        Discover my projects showcasing innovation and real-world impact.
-      </p>
-
-      {/* GRID */}
-      <div className="grid md:grid-cols-2 gap-10 mt-12">
-        {projects.map((p, i) => (
-          <ProjectCard key={i} project={p} onClick={() => setSelected(p)} />
-        ))}
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        {/* Section Heading */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="mb-12 md:mb-16"
+        >
+          <div className="flex items-center gap-2 mb-3">
+            <Sparkles className="w-4 h-4 text-[#E8D2A6]" />
+            <p className="text-[10px] font-mono tracking-[0.3em] uppercase text-white/40">
+              Selected Works
+            </p>
+          </div>
+          <h2 className="text-4xl md:text-5xl lg:text-7xl font-display font-bold tracking-tight text-white mb-4 leading-tight">
+            Projects.
+          </h2>
+          <p className="text-white/50 text-sm md:text-base font-light leading-relaxed max-w-xl">
+            Real-world AI systems, multi-agent frameworks, and scalable full-stack applications with measurable impact.
+          </p>
+        </motion.div>
       </div>
 
-      {/* MODAL */}
-      <ProjectModal project={selected} onClose={() => setSelected(null)} />
+      {/* Main Project Carousel Container */}
+      <div className="max-w-5xl mx-auto px-6 relative z-10">
+        <div className="relative min-h-[500px] md:min-h-[460px] overflow-hidden rounded-3xl">
+          <AnimatePresence initial={false} custom={direction} mode="wait">
+            <motion.div
+              key={currentIndex}
+              custom={direction}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              className="w-full bg-[#09090B] border border-white/[0.08] rounded-3xl overflow-hidden shadow-[0_24px_64px_rgba(0,0,0,0.85)] flex flex-col"
+            >
+              {/* Subtle top border sheen */}
+              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#C9A876]/30 to-transparent z-10" />
+
+              <div className="grid md:grid-cols-12 h-full">
+                {/* Left Side: Project details */}
+                <div className="md:col-span-7 p-6 sm:p-8 flex flex-col justify-between border-b md:border-b-0 md:border-r border-white/[0.06]">
+                  <div>
+                    {/* Header tags */}
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-[#E8D2A6]"></span>
+                        <span className="text-[11px] font-mono tracking-[0.25em] uppercase text-white/40">
+                          Project {currentProject.number}
+                        </span>
+                      </div>
+                      <span className="text-[10px] font-mono tracking-[0.15em] uppercase text-[#E8D2A6] bg-[#C9A876]/10 border border-[#C9A876]/20 px-2.5 py-1 rounded-md">
+                        {currentProject.category}
+                      </span>
+                    </div>
+
+                    {/* Title & Subtitle */}
+                    <h3 className="text-xl sm:text-2xl md:text-3xl font-display font-bold text-white tracking-tight mb-2">
+                      {currentProject.title}
+                    </h3>
+                    <p className="text-[#C9A876] text-xs font-mono tracking-wide mb-4">
+                      {currentProject.subtitle}
+                    </p>
+
+                    <p className="text-white/60 text-sm font-light leading-relaxed mb-5">
+                      {currentProject.description}
+                    </p>
+
+                    {/* Bullet Highlights */}
+                    <ul className="space-y-2.5 mb-6">
+                      {currentProject.bulletPoints.map((bullet, bIdx) => (
+                        <li key={bIdx} className="flex items-start text-xs sm:text-sm text-white/70 leading-relaxed gap-2">
+                          <CheckCircle2 className="w-4 h-4 text-[#E8D2A6] shrink-0 mt-0.5" />
+                          <span>{bullet}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Footer tech tags & GitHub action */}
+                  <div className="pt-4 border-t border-white/[0.06] flex flex-wrap items-center justify-between gap-3">
+                    <div className="flex flex-wrap gap-1.5 max-w-md">
+                      {currentProject.technologies.map((tech) => (
+                        <span
+                          key={tech}
+                          className="px-2 py-0.5 rounded-md bg-white/[0.03] border border-white/[0.08] text-[10px] font-mono tracking-wider uppercase text-white/50"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+
+                    <a
+                      href={currentProject.github}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-white/80 hover:text-white hover:bg-white/10 hover:border-white/30 text-xs font-mono transition-all duration-300"
+                    >
+                      <GithubIcon className="w-3.5 h-3.5" />
+                      <span>Code</span>
+                    </a>
+                  </div>
+                </div>
+
+                {/* Right Side: Key Metrics Showcase */}
+                <div className="md:col-span-5 p-6 sm:p-8 bg-[#0C0C0F]/50 flex flex-col justify-between">
+                  <p className="text-[10px] font-mono tracking-[0.3em] uppercase text-white/30 mb-4">
+                    Impact & Metrics
+                  </p>
+
+                  <div className="flex flex-col gap-3 my-auto">
+                    {currentProject.metrics.map((metric, mIdx) => (
+                      <div
+                        key={mIdx}
+                        className="p-4 rounded-2xl bg-white/[0.02] border border-white/[0.06] hover:border-[#C9A876]/30 hover:bg-white/[0.04] transition-all duration-300 relative overflow-hidden"
+                      >
+                        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                        <div className="text-2xl sm:text-3xl font-display font-bold text-white tracking-tight mb-1">
+                          {metric.value}
+                        </div>
+                        <div className="text-[10px] font-mono text-white/40 uppercase tracking-[0.2em]">
+                          {metric.label}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="text-[10px] font-mono text-white/30 text-right mt-4">
+                    Verified Architecture
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* Carousel Controls */}
+        <div className="flex items-center justify-between mt-6">
+          {/* Pagination Indicators */}
+          <div className="flex items-center gap-2">
+            {projects.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => {
+                  setDirection(idx > currentIndex ? 1 : -1);
+                  setCurrentIndex(idx);
+                }}
+                className={`transition-all duration-300 rounded-full ${
+                  idx === currentIndex
+                    ? 'w-7 h-[3px] bg-[#E8D2A6]'
+                    : 'w-2 h-[3px] bg-white/20 hover:bg-white/40'
+                }`}
+                aria-label={`Go to project ${idx + 1}`}
+              />
+            ))}
+            <span className="text-[9px] font-mono tracking-[0.25em] text-white/30 ml-2 uppercase">
+              0{currentIndex + 1} / 0{projects.length}
+            </span>
+          </div>
+
+          {/* Prev/Next Arrow Buttons */}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={prevProject}
+              aria-label="Previous project"
+              className="w-10 h-10 rounded-full bg-[#121215] border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:border-white/30 hover:bg-[#18181C] transition-all active:scale-95 shadow-md"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <button
+              onClick={nextProject}
+              aria-label="Next project"
+              className="w-10 h-10 rounded-full bg-[#121215] border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:border-white/30 hover:bg-[#18181C] transition-all active:scale-95 shadow-md"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+
+        <p className="text-center text-[9px] font-mono tracking-[0.25em] uppercase text-white/20 mt-4">
+          ← → arrow keys to navigate
+        </p>
+      </div>
     </section>
   );
 }
