@@ -71,7 +71,7 @@ export default function Hero() {
       />
 
       {/* Subtle warm bronze glow at center */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[350px] bg-[#C9A876]/[0.06] blur-[130px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] max-w-full h-[350px] bg-[#C9A876]/[0.06] blur-[130px] rounded-full pointer-events-none" />
 
       {/* Decorative corner accent brackets */}
       <div className="hidden sm:block absolute top-24 left-8 w-6 h-6 border-t border-l border-white/10 pointer-events-none" />
@@ -79,23 +79,23 @@ export default function Hero() {
       <div className="hidden sm:block absolute bottom-12 left-8 w-6 h-6 border-b border-l border-white/10 pointer-events-none" />
       <div className="hidden sm:block absolute bottom-12 right-8 w-6 h-6 border-b border-r border-white/10 pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-12 gap-12 lg:gap-8 items-center relative z-10 my-auto">
+      <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-12 gap-10 lg:gap-8 items-center relative z-10 my-auto">
         {/* Left Column: Information & Typewriter */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left"
+          className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left w-full"
         >
           {/* Top category badge */}
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.03] border border-white/10 text-white/50 text-[11px] font-mono tracking-[0.25em] uppercase mb-6 backdrop-blur-md"
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.03] border border-white/10 text-white/50 text-[10.5px] sm:text-[11px] font-mono tracking-[0.2em] sm:tracking-[0.25em] uppercase mb-6 backdrop-blur-md max-w-full truncate"
           >
-            <span className="w-1.5 h-1.5 rounded-full bg-[#E8D2A6] animate-pulse"></span>
-            AI/ML ENGINEER · FULL STACK DEVELOPER · VIT CHENNAI
+            <span className="w-1.5 h-1.5 rounded-full bg-[#E8D2A6] animate-pulse shrink-0"></span>
+            <span className="truncate">AI/ML ENGINEER · FULL STACK DEVELOPER · VIT CHENNAI</span>
           </motion.div>
 
           {/* Main Name Heading */}
@@ -112,13 +112,12 @@ export default function Hero() {
             </span>
           </h1>
 
-          {/* Animated Typewriter Headline */}
-          <div className="h-10 sm:h-12 flex items-center justify-center lg:justify-start gap-2.5 text-lg sm:text-2xl font-light text-white/40 mb-6 font-sans">
-            <span>Building</span>
-            <span className="font-medium text-[#E8D2A6] drop-shadow-[0_0_25px_rgba(201,168,118,0.3)]">
+          {/* Animated Typewriter Headline without "Building" */}
+          <div className="h-10 sm:h-12 flex items-center justify-center lg:justify-start gap-2 text-lg sm:text-2xl lg:text-3xl font-normal text-[#E8D2A6] mb-6 font-sans drop-shadow-[0_0_25px_rgba(201,168,118,0.3)] min-w-0">
+            <span className="font-medium tracking-tight">
               {currentText}
-              <span className="inline-block w-0.5 h-5 sm:h-6 bg-[#E8D2A6] ml-1 animate-pulse align-middle"></span>
             </span>
+            <span className="inline-block w-0.5 h-5 sm:h-6 bg-[#E8D2A6] animate-pulse align-middle shrink-0"></span>
           </div>
 
           {/* Bio snippet */}
@@ -127,10 +126,10 @@ export default function Hero() {
           </p>
 
           {/* Call to Actions */}
-          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 mb-8">
+          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3.5 sm:gap-4 mb-8 w-full">
             <button
               onClick={() => scrollTo('projects')}
-              className="group relative px-7 py-3 rounded-full bg-[#F2EFE9] text-[#0A0A0C] text-[13.5px] font-semibold flex items-center gap-2.5 overflow-hidden shadow-[0_0_40px_rgba(201,168,118,0.2)] transition-all duration-300 hover:shadow-[0_0_60px_rgba(201,168,118,0.35)] hover:scale-[1.02] active:scale-[0.98]"
+              className="group relative px-6 sm:px-7 py-3 rounded-full bg-[#F2EFE9] text-[#0A0A0C] text-[13px] sm:text-[13.5px] font-semibold flex items-center gap-2.5 overflow-hidden shadow-[0_0_40px_rgba(201,168,118,0.2)] transition-all duration-300 hover:shadow-[0_0_60px_rgba(201,168,118,0.35)] hover:scale-[1.02] active:scale-[0.98]"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-white via-[#F2EFE9] to-[#E8D2A6] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <span className="relative z-10">View Projects</span>
@@ -139,7 +138,7 @@ export default function Hero() {
 
             <button
               onClick={() => scrollTo('contact')}
-              className="px-7 py-3 rounded-full text-[13.5px] font-medium text-white/70 border border-white/15 bg-white/[0.02] backdrop-blur-md transition-all duration-300 hover:text-[#E8D2A6] hover:bg-[#C9A876]/[0.08] hover:border-[#C9A876]/40 active:scale-[0.98]"
+              className="px-6 sm:px-7 py-3 rounded-full text-[13px] sm:text-[13.5px] font-medium text-white/70 border border-white/15 bg-white/[0.02] backdrop-blur-md transition-all duration-300 hover:text-[#E8D2A6] hover:bg-[#C9A876]/[0.08] hover:border-[#C9A876]/40 active:scale-[0.98]"
             >
               Get in Touch
             </button>
@@ -180,10 +179,10 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.9, rotateX: 20 }}
           animate={{ opacity: 1, scale: 1, rotateX: 0 }}
           transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className="lg:col-span-5 flex items-center justify-center relative min-h-[360px] sm:min-h-[420px]"
+          className="lg:col-span-5 flex items-center justify-center relative min-h-[340px] sm:min-h-[400px] w-full"
         >
-          {/* Isometric Perspective Container */}
-          <div className="relative w-[310px] sm:w-[360px] h-[360px] sm:h-[400px] perspective-[1200px]">
+          {/* Isometric Perspective Container with responsive max width */}
+          <div className="relative w-full max-w-[310px] sm:max-w-[360px] h-[340px] sm:h-[390px] perspective-[1200px]">
             <motion.div
               animate={{
                 rotateY: [-3, 3, -3],
@@ -222,7 +221,7 @@ export default function Hero() {
                   { name: "Ollama", type: "Local LLMs", highlight: true },
                   { name: "FAISS", type: "Vector RAG", highlight: false },
                   { name: "Node / Express", type: "APIs & Services", highlight: false }
-                ].map((item, idx) => (
+                ].map((item) => (
                   <motion.div
                     key={item.name}
                     whileHover={{ scale: 1.04, y: -2 }}

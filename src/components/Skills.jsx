@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { skillCategories } from '../data/portfolioData';
 import { GithubIcon } from './Icons';
 import {
@@ -71,9 +71,9 @@ export default function Skills() {
   return (
     <section id="skills" className="relative py-20 lg:py-28 bg-black overflow-hidden">
       {/* Background ambient light */}
-      <div className="absolute top-1/3 right-10 w-96 h-96 bg-white/[0.01] blur-[130px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/3 right-10 w-96 max-w-full h-96 bg-white/[0.01] blur-[130px] rounded-full pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Heading */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -97,14 +97,14 @@ export default function Skills() {
         </motion.div>
 
         {/* Terminal Category Selector Pills */}
-        <div className="flex flex-wrap items-center gap-2.5 mb-10">
+        <div className="flex flex-wrap items-center gap-2 mb-8 sm:mb-10">
           {skillCategories.map((cat) => {
             const isActive = selectedCategory === cat.id;
             return (
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.id)}
-                className={`px-4 py-2 rounded-xl font-mono text-xs transition-all duration-300 flex items-center gap-2 ${
+                className={`px-3.5 sm:px-4 py-2 rounded-xl font-mono text-xs transition-all duration-300 flex items-center gap-1.5 sm:gap-2 ${
                   isActive
                     ? 'bg-[#18181B] text-[#E8D2A6] border border-[#C9A876]/40 shadow-[0_0_20px_rgba(201,168,118,0.15)] font-semibold'
                     : 'bg-[#0A0A0C] text-white/50 border border-white/5 hover:text-white hover:border-white/15'
@@ -118,7 +118,7 @@ export default function Skills() {
         </div>
 
         {/* Terminal Window Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {skillCategories.map((category, catIdx) => {
             const isHighlighted = selectedCategory === category.id;
             return (
@@ -151,7 +151,7 @@ export default function Skills() {
                   </div>
 
                   {/* Terminal Body */}
-                  <div className="p-5 text-xs text-gray-300 flex-1 flex flex-col justify-between">
+                  <div className="p-4 sm:p-5 text-xs text-gray-300 flex-1 flex flex-col justify-between">
                     <div>
                       {/* Command Prompt line */}
                       <div className="flex items-center gap-2 mb-4 font-mono text-[11px]">
@@ -161,7 +161,7 @@ export default function Skills() {
                       </div>
 
                       {/* Skills Grid */}
-                      <div className="grid grid-cols-2 gap-x-2.5 gap-y-3 mb-6">
+                      <div className="grid grid-cols-2 gap-x-2 gap-y-2.5 mb-6">
                         {category.skills.map((skill, sIdx) => {
                           const IconComponent = iconMap[skill.icon] || Code2;
                           return (

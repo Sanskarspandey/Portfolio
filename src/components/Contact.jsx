@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { personalInfo } from '../data/portfolioData';
 import { GithubIcon, LinkedinIcon } from './Icons';
 import confetti from 'canvas-confetti';
@@ -95,11 +95,11 @@ export default function Contact() {
           WebkitMaskImage: 'radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%)'
         }}
       />
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#C9A876]/[0.04] blur-[140px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-white/[0.015] blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[500px] max-w-full h-[500px] bg-[#C9A876]/[0.04] blur-[140px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[500px] max-w-full h-[500px] bg-white/[0.015] blur-[120px] rounded-full pointer-events-none" />
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Heading */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -124,7 +124,7 @@ export default function Contact() {
 
         <div className="max-w-4xl mx-auto">
           {/* Quick Contact Cards */}
-          <div className="grid sm:grid-cols-2 gap-4 md:gap-5 mb-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5 mb-10">
             {/* Email Card */}
             <motion.a
               href={`mailto:${personalInfo.email}`}
@@ -132,16 +132,16 @@ export default function Contact() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="group relative flex items-center p-5 rounded-2xl bg-[#0A0A0C] border border-white/[0.08] hover:border-[#C9A876]/40 transition-all duration-300 gap-4 cursor-pointer overflow-hidden"
+              className="group relative flex items-center p-4 sm:p-5 rounded-2xl bg-[#0A0A0C] border border-white/[0.08] hover:border-[#C9A876]/40 transition-all duration-300 gap-3.5 sm:gap-4 cursor-pointer overflow-hidden max-w-full"
             >
-              <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white/60 group-hover:text-[#E8D2A6] group-hover:bg-[#C9A876]/15 group-hover:border-[#C9A876]/30 transition-all duration-300 shrink-0">
+              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white/60 group-hover:text-[#E8D2A6] group-hover:bg-[#C9A876]/15 group-hover:border-[#C9A876]/30 transition-all duration-300 shrink-0">
                 <Mail className="w-5 h-5" />
               </div>
               <div className="flex-grow min-w-0">
-                <div className="text-[10px] uppercase tracking-[0.25em] text-white/40 font-mono mb-0.5">
+                <div className="text-[9.5px] sm:text-[10px] uppercase tracking-[0.25em] text-white/40 font-mono mb-0.5">
                   Direct Email
                 </div>
-                <div className="text-white font-medium text-sm sm:text-[15px] truncate font-mono">
+                <div className="text-white font-medium text-xs sm:text-sm md:text-[15px] truncate font-mono">
                   {personalInfo.email}
                 </div>
               </div>
@@ -161,16 +161,16 @@ export default function Contact() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="group relative flex items-center p-5 rounded-2xl bg-[#0A0A0C] border border-white/[0.08] hover:border-[#C9A876]/40 transition-all duration-300 gap-4 cursor-pointer overflow-hidden"
+              className="group relative flex items-center p-4 sm:p-5 rounded-2xl bg-[#0A0A0C] border border-white/[0.08] hover:border-[#C9A876]/40 transition-all duration-300 gap-3.5 sm:gap-4 cursor-pointer overflow-hidden max-w-full"
             >
-              <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white/60 group-hover:text-[#E8D2A6] group-hover:bg-[#C9A876]/15 group-hover:border-[#C9A876]/30 transition-all duration-300 shrink-0">
+              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white/60 group-hover:text-[#E8D2A6] group-hover:bg-[#C9A876]/15 group-hover:border-[#C9A876]/30 transition-all duration-300 shrink-0">
                 <Phone className="w-5 h-5" />
               </div>
               <div className="flex-grow min-w-0">
-                <div className="text-[10px] uppercase tracking-[0.25em] text-white/40 font-mono mb-0.5">
+                <div className="text-[9.5px] sm:text-[10px] uppercase tracking-[0.25em] text-white/40 font-mono mb-0.5">
                   Phone / WhatsApp
                 </div>
-                <div className="text-white font-medium text-sm sm:text-[15px] truncate font-mono">
+                <div className="text-white font-medium text-xs sm:text-sm md:text-[15px] truncate font-mono">
                   {personalInfo.phone}
                 </div>
               </div>
@@ -194,7 +194,7 @@ export default function Contact() {
               rel="noreferrer"
               className="group flex flex-col items-center gap-2"
             >
-              <div className="w-14 h-14 rounded-2xl flex items-center justify-center bg-white/[0.02] border border-white/[0.08] text-white/50 group-hover:text-white group-hover:border-[#C9A876]/40 group-hover:bg-[#C9A876]/10 transition-all duration-300">
+              <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center bg-white/[0.02] border border-white/[0.08] text-white/50 group-hover:text-white group-hover:border-[#C9A876]/40 group-hover:bg-[#C9A876]/10 transition-all duration-300">
                 <GithubIcon className="w-5 h-5" />
               </div>
               <span className="text-[10px] uppercase tracking-[0.2em] text-white/30 font-mono group-hover:text-white/70 transition-colors">
@@ -208,7 +208,7 @@ export default function Contact() {
               rel="noreferrer"
               className="group flex flex-col items-center gap-2"
             >
-              <div className="w-14 h-14 rounded-2xl flex items-center justify-center bg-white/[0.02] border border-white/[0.08] text-white/50 group-hover:text-white group-hover:border-[#C9A876]/40 group-hover:bg-[#C9A876]/10 transition-all duration-300">
+              <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center bg-white/[0.02] border border-white/[0.08] text-white/50 group-hover:text-white group-hover:border-[#C9A876]/40 group-hover:bg-[#C9A876]/10 transition-all duration-300">
                 <LinkedinIcon className="w-5 h-5" />
               </div>
               <span className="text-[10px] uppercase tracking-[0.2em] text-white/30 font-mono group-hover:text-white/70 transition-colors">
@@ -223,9 +223,9 @@ export default function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="p-7 sm:p-10 rounded-3xl bg-[#09090B] border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.7)] relative mb-12"
+            className="p-5 sm:p-8 md:p-10 rounded-3xl bg-[#09090B] border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.7)] relative mb-12"
           >
-            <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
+            <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-6 flex-wrap gap-2">
               <div className="flex items-center gap-2 font-mono text-xs text-white/70">
                 <Send className="w-4 h-4 text-[#E8D2A6]" />
                 <span>send_message.sh</span>
@@ -236,7 +236,7 @@ export default function Contact() {
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-[11px] font-mono uppercase tracking-wider text-white/50 mb-1.5">
                     Your Name *
@@ -332,7 +332,7 @@ export default function Contact() {
           <div className="flex justify-center mb-10">
             <a
               href={`mailto:${personalInfo.email}?subject=Request%20for%20Sanskar%20Pandey%20Resume`}
-              className="group relative inline-flex items-center gap-3 px-8 py-4 rounded-full overflow-hidden cursor-pointer"
+              className="group relative inline-flex items-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full overflow-hidden cursor-pointer max-w-full"
               style={{
                 background: 'linear-gradient(135deg, rgba(201,168,118,0.12) 0%, rgba(201,168,118,0.04) 100%)',
                 border: '1px solid rgba(201,168,118,0.35)'
@@ -344,18 +344,18 @@ export default function Contact() {
                   background: 'linear-gradient(90deg, transparent 0%, rgba(201,168,118,0.2) 50%, transparent 100%)'
                 }}
               />
-              <div className="relative z-10 w-9 h-9 rounded-full flex items-center justify-center bg-[#C9A876]/15 border border-[#C9A876]/30 group-hover:bg-[#C9A876]/25 transition-colors">
+              <div className="relative z-10 w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center bg-[#C9A876]/15 border border-[#C9A876]/30 group-hover:bg-[#C9A876]/25 transition-colors shrink-0">
                 <FileDown className="w-4 h-4 text-[#E8D2A6]" />
               </div>
               <div className="relative z-10 text-left">
-                <div className="text-[10px] uppercase tracking-[0.24em] text-[#C9A876] font-mono">
+                <div className="text-[9.5px] sm:text-[10px] uppercase tracking-[0.24em] text-[#C9A876] font-mono">
                   Official Document
                 </div>
-                <div className="text-white font-display font-semibold text-sm tracking-tight leading-none mt-0.5">
+                <div className="text-white font-display font-semibold text-xs sm:text-sm tracking-tight leading-none mt-0.5">
                   Request Resume / CV
                 </div>
               </div>
-              <ArrowRight className="relative z-10 w-4 h-4 text-[#C9A876] group-hover:translate-x-1 transition-all duration-300 ml-2" />
+              <ArrowRight className="relative z-10 w-4 h-4 text-[#C9A876] group-hover:translate-x-1 transition-all duration-300 ml-1 sm:ml-2 shrink-0" />
             </a>
           </div>
         </div>

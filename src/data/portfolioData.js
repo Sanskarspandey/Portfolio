@@ -309,12 +309,39 @@ export const skillCategories = [
 
 export const education = [
   {
+    id: "podar",
+    institution: "Lilavatibai Podar High School",
+    degree: "Indian Certificate of Secondary Education (ICSE)",
+    period: "2013 – 2021",
+    score: "94%",
+    scoreLabel: "10th Percentage",
+    shortCode: "ICSE",
+    highlights: [
+      "Indian Certificate of Secondary Education curriculum",
+      "Achieved 94% in 10th Grade board examinations"
+    ]
+  },
+  {
+    id: "rao",
+    institution: "Rao Junior College of Science",
+    degree: "Maharashtra State Board (HSC — Science)",
+    period: "2021 – 2023",
+    score: "76%",
+    scoreLabel: "12th Percentage",
+    shortCode: "HSC",
+    highlights: [
+      "Maharashtra State Board Higher Secondary Certificate in Science",
+      "Rigorous pre-university coursework in Physics, Chemistry, and Mathematics"
+    ]
+  },
+  {
     id: "vit",
     institution: "Vellore Institute of Technology, Chennai",
     degree: "B.Tech in Computer Science and Engineering (AI & ML)",
     period: "2023 – 2027",
-    cgpa: "8.59 / 10",
-    badge: "Specialization in AI & ML",
+    score: "8.59 / 10",
+    scoreLabel: "CGPA / 10",
+    shortCode: "VIT",
     highlights: [
       "Specialization in Artificial Intelligence, Machine Learning, and Agentic Systems",
       "Active participant in technical symposiums, research forums, and competitive hackathons"
@@ -327,8 +354,25 @@ export const leadership = [
     id: "rrc",
     role: "HR & Management Head",
     organization: "Red Ribbon Club, VIT Chennai",
-    description: "Led recruitment, strategic event planning, and cross-functional coordination for student initiatives and community outreach operations.",
-    badges: ["Recruitment", "Event Management", "Cross-Functional Leadership"]
+    period: "VIT Chennai",
+    description: "Led recruitment, event planning and cross-functional coordination for student initiatives.",
+    badges: ["Recruitment", "Event Planning", "Cross-Functional Coordination"]
+  },
+  {
+    id: "mic",
+    role: "Technical Team Member",
+    organization: "Microsoft Innovations Club",
+    period: "Technical Team",
+    description: "Worked as a technical team member, contributing to the development of websites and digital platforms for college events and initiatives.",
+    badges: ["Web Development", "Technical Contributions", "Digital Platforms"]
+  },
+  {
+    id: "swarajya",
+    role: "Member",
+    organization: "Swarajya Maharashtra Club",
+    period: "Cultural Committee",
+    description: "Contributed to organizing and hosting cultural events including Ganesh Chaturthi, Gudi Padwa, Open Mic events, and freedom-fighter role-play activities.",
+    badges: ["Cultural Events", "Event Hosting", "Community Engagement"]
   }
 ];
 
