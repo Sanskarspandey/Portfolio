@@ -31,6 +31,8 @@ export default function Contact() {
 
   const [copiedEmail, setCopiedEmail] = useState(false);
 
+  const resumeUrl = `${import.meta.env.BASE_URL}resume/Sanskar_Pandey_Resume.pdf`;
+
   const handleCopyEmail = (e) => {
     e.preventDefault();
     navigator.clipboard.writeText(personalInfo.email);
@@ -84,7 +86,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="relative py-20 lg:py-28 bg-black overflow-hidden">
+    <section id="contact" className="relative py-20 lg:py-28 bg-black overflow-hidden w-full max-w-full">
       {/* Background ambient lighting and grid */}
       <div
         className="absolute inset-0 pointer-events-none opacity-20"
@@ -95,18 +97,18 @@ export default function Contact() {
           WebkitMaskImage: 'radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%)'
         }}
       />
-      <div className="absolute top-0 right-0 w-[500px] max-w-full h-[500px] bg-[#C9A876]/[0.04] blur-[140px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[500px] max-w-full h-[500px] bg-white/[0.015] blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[450px] max-w-full h-[450px] bg-[#C9A876]/[0.04] blur-[140px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[450px] max-w-full h-[450px] bg-white/[0.015] blur-[120px] rounded-full pointer-events-none" />
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         {/* Section Heading */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="mb-14 md:mb-16"
+          className="mb-14 md:mb-16 max-w-full"
         >
           <div className="flex items-center gap-2 mb-3">
             <Sparkles className="w-4 h-4 text-[#E8D2A6]" />
@@ -122,9 +124,9 @@ export default function Contact() {
           </p>
         </motion.div>
 
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto w-full">
           {/* Quick Contact Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5 mb-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5 mb-10 w-full">
             {/* Email Card */}
             <motion.a
               href={`mailto:${personalInfo.email}`}
@@ -132,7 +134,7 @@ export default function Contact() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="group relative flex items-center p-4 sm:p-5 rounded-2xl bg-[#0A0A0C] border border-white/[0.08] hover:border-[#C9A876]/40 transition-all duration-300 gap-3.5 sm:gap-4 cursor-pointer overflow-hidden max-w-full"
+              className="group relative flex items-center p-4 sm:p-5 rounded-2xl bg-[#0A0A0C] border border-white/[0.08] hover:border-[#C9A876]/40 transition-all duration-300 gap-3.5 sm:gap-4 cursor-pointer overflow-hidden w-full"
             >
               <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white/60 group-hover:text-[#E8D2A6] group-hover:bg-[#C9A876]/15 group-hover:border-[#C9A876]/30 transition-all duration-300 shrink-0">
                 <Mail className="w-5 h-5" />
@@ -161,7 +163,7 @@ export default function Contact() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="group relative flex items-center p-4 sm:p-5 rounded-2xl bg-[#0A0A0C] border border-white/[0.08] hover:border-[#C9A876]/40 transition-all duration-300 gap-3.5 sm:gap-4 cursor-pointer overflow-hidden max-w-full"
+              className="group relative flex items-center p-4 sm:p-5 rounded-2xl bg-[#0A0A0C] border border-white/[0.08] hover:border-[#C9A876]/40 transition-all duration-300 gap-3.5 sm:gap-4 cursor-pointer overflow-hidden w-full"
             >
               <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white/60 group-hover:text-[#E8D2A6] group-hover:bg-[#C9A876]/15 group-hover:border-[#C9A876]/30 transition-all duration-300 shrink-0">
                 <Phone className="w-5 h-5" />
@@ -191,7 +193,7 @@ export default function Contact() {
             <a
               href={personalInfo.github}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="group flex flex-col items-center gap-2"
             >
               <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center bg-white/[0.02] border border-white/[0.08] text-white/50 group-hover:text-white group-hover:border-[#C9A876]/40 group-hover:bg-[#C9A876]/10 transition-all duration-300">
@@ -205,7 +207,7 @@ export default function Contact() {
             <a
               href={personalInfo.linkedin}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="group flex flex-col items-center gap-2"
             >
               <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center bg-white/[0.02] border border-white/[0.08] text-white/50 group-hover:text-white group-hover:border-[#C9A876]/40 group-hover:bg-[#C9A876]/10 transition-all duration-300">
@@ -223,7 +225,7 @@ export default function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="p-5 sm:p-8 md:p-10 rounded-3xl bg-[#09090B] border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.7)] relative mb-12"
+            className="p-5 sm:p-8 md:p-10 rounded-3xl bg-[#09090B] border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.7)] relative mb-12 w-full"
           >
             <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-6 flex-wrap gap-2">
               <div className="flex items-center gap-2 font-mono text-xs text-white/70">
@@ -329,21 +331,18 @@ export default function Contact() {
           </motion.div>
 
           {/* Resume / CV CTA Button */}
-          <div className="flex justify-center mb-10">
+          <div className="flex justify-center mb-10 w-full">
             <a
-              href={`mailto:${personalInfo.email}?subject=Request%20for%20Sanskar%20Pandey%20Resume`}
+              href={resumeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              download="Sanskar_Pandey_Resume.pdf"
               className="group relative inline-flex items-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full overflow-hidden cursor-pointer max-w-full"
               style={{
                 background: 'linear-gradient(135deg, rgba(201,168,118,0.12) 0%, rgba(201,168,118,0.04) 100%)',
                 border: '1px solid rgba(201,168,118,0.35)'
               }}
             >
-              <div
-                className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out"
-                style={{
-                  background: 'linear-gradient(90deg, transparent 0%, rgba(201,168,118,0.2) 50%, transparent 100%)'
-                }}
-              />
               <div className="relative z-10 w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center bg-[#C9A876]/15 border border-[#C9A876]/30 group-hover:bg-[#C9A876]/25 transition-colors shrink-0">
                 <FileDown className="w-4 h-4 text-[#E8D2A6]" />
               </div>
@@ -352,7 +351,7 @@ export default function Contact() {
                   Official Document
                 </div>
                 <div className="text-white font-display font-semibold text-xs sm:text-sm tracking-tight leading-none mt-0.5">
-                  Request Resume / CV
+                  Download Official Resume / CV
                 </div>
               </div>
               <ArrowRight className="relative z-10 w-4 h-4 text-[#C9A876] group-hover:translate-x-1 transition-all duration-300 ml-1 sm:ml-2 shrink-0" />

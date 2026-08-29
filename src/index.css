@@ -3,16 +3,37 @@
 @tailwind utilities;
 
 @layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
   html {
     color-scheme: dark;
     background-color: #08080A;
     font-family: 'Inter', sans-serif;
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: clip;
   }
 
   body {
     background-color: #08080A;
     color: #F3F4F6;
-    overflow-x: hidden;
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: clip;
+  }
+
+  #root {
+    max-width: 100%;
+    width: 100%;
+    overflow-x: clip;
   }
 }
 
